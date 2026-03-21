@@ -20,9 +20,9 @@ public class Main {
         ingressoFamilia1.exibirIngresso();
 
         // Exercício 2
-        Gerente gerente = new Gerente("Matheus", "matheus@email.com", "12345");
-        Vendedor vendedor = new Vendedor("Henrique", "henrique@email.com", "1234");
-        Atendente atendente = new Atendente("Lucas", "lucas@email.com", "123456");
+        Gerente gerente = new Gerente("Matheus", "matheus@email.com", "12345", false);
+        Vendedor vendedor = new Vendedor("Henrique", "henrique@email.com", "1234", false);
+        Atendente atendente = new Atendente("Lucas", "lucas@email.com", "123456", false);
 
         // Gerente
         gerente.login();
@@ -48,6 +48,7 @@ public class Main {
         atendente.alterarDados("Lucas Tino", "lucastino@email.com");
         atendente.alterarSenha("12345");
         atendente.receberPagamento(10000.00F);
+        atendente.fecharCaixa();
         atendente.logout();
     }
 }

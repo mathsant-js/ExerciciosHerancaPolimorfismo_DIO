@@ -7,7 +7,7 @@ public final class MeiaEntrada extends Ingresso {
 
     @Override
     protected float calcularIngresso() {
-       return valor /= 2;
+       return valor / 2;
     }
 
     @Override

@@ -5,6 +5,9 @@ import org.example.exerc1.MeiaEntrada;
 import org.example.exerc2.Atendente;
 import org.example.exerc2.Gerente;
 import org.example.exerc2.Vendedor;
+import org.example.exerc3.Americano;
+import org.example.exerc3.Brasileiro;
+import org.example.exerc3.Relogio;
 
 public class Main {
     public static void main(String[] args) {
@@ -50,5 +53,28 @@ public class Main {
         atendente.receberPagamento(10000.00F);
         atendente.fecharCaixa();
         atendente.logout();
+
+        // Exercicio 3
+        System.out.println("====Relógios====\n");
+
+        Americano americanoAnteMeridiam = new Americano(8, 20, 0, "AM");
+        Americano americanoPosMeridiam = new Americano(10, 45, 20, "PM");
+        Brasileiro brasileiroManha = new Brasileiro(6, 30, 10);
+        Brasileiro brasileiroTarde = new Brasileiro(15, 20, 0);
+
+        System.out.println(americanoAnteMeridiam.getHorarioFormatado());
+        System.out.println(americanoPosMeridiam.getHorarioFormatado());
+
+        System.out.println(brasileiroManha.getHorarioFormatado());
+        System.out.println(brasileiroTarde.getHorarioFormatado());
+
+        americanoPosMeridiam.copiarRelogio(brasileiroTarde);
+        System.out.println(americanoPosMeridiam.getHorarioFormatado());
+
+        americanoAnteMeridiam.copiarRelogio(brasileiroManha);
+        System.out.println(americanoAnteMeridiam.getHorarioFormatado());
+
+        brasileiroManha.copiarRelogio(americanoPosMeridiam);
+        System.out.println(brasileiroManha.getHorarioFormatado());
     }
 }

@@ -19,9 +19,13 @@ public final class Americano extends Relogio {
         }
     }
 
+    private boolean acimaHorasPermitidoAmericano(int horas) {
+        return horas > 12;
+    }
+
     @Override
     public void setHoras(int horas) {
-        if (horas >= 13) {
+        if (acimaHorasPermitidoAmericano(horas)) {
             throw new IllegalArgumentException("Horas não pode ser igual ou maior que 13");
         } else {
             super.setHoras(horas);
@@ -37,13 +41,13 @@ public final class Americano extends Relogio {
     public void copiarRelogio(Relogio relogio) {
         int horas = relogio.getHoras();
 
-        if (horas == 0) {
+        if (isMeiaNoite(horas)) {
             this.setMeridiem("AM");
             this.setHoras(12);
-        } else if (horas == 12) {
+        } else if (isMeioDia(horas)) {
             this.setMeridiem("PM");
             this.setHoras(horas);
-        } else if (horas > 12) {
+        } else if (isTarde(horas)) {
             setMeridiem("PM");
             setHoras(horas - 12);
         } else {

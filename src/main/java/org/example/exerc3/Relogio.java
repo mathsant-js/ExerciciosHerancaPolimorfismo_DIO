@@ -17,14 +17,42 @@ public sealed abstract class Relogio permits Americano, Brasileiro {
 
     public abstract void copiarRelogio(Relogio relogio);
 
+    private boolean isNegativo(int tempo) {
+        return tempo < 0;
+    }
+
+    private boolean acimaTempoPermitido(int tempo) {
+        return tempo > 59;
+    }
+
+    private boolean acimaHorasDoDia(int horas) {
+        return horas > 23;
+    }
+
+    protected boolean isMeiaNoite(int horas) {
+        return horas == 0;
+    }
+
+    protected boolean isMeioDia(int horas) {
+        return horas == 12;
+    }
+
+    protected boolean isTarde(int horas) {
+        return horas > 12;
+    }
+
+    protected boolean isAM(Americano americano) {
+        return americano.getMeridiem().equals("AM");
+    }
+
     public int getHoras() {
         return horas;
     }
 
     public void setHoras(int horas) {
-        if (horas > 23) {
+        if (acimaHorasDoDia(horas)) {
             throw new IllegalArgumentException("Horas não pode ser igual ou maior que 24");
-        } else if (horas < 0) {
+        } else if (isNegativo(horas)) {
             throw new IllegalArgumentException("Horas não pode ser negativa!");
         } else {
             this.horas = horas;
@@ -36,9 +64,9 @@ public sealed abstract class Relogio permits Americano, Brasileiro {
     }
 
     public void setMinutos(int minutos) {
-        if (minutos > 59) {
+        if (acimaTempoPermitido(minutos)) {
             throw new IllegalArgumentException("Os minutos não podem ser maiores que 60!");
-        } else if (minutos < 0) {
+        } else if (isNegativo(minutos)) {
             throw new IllegalArgumentException("Os minutos não podem ser negativos!");
         } else {
             this.minutos = minutos;
@@ -50,9 +78,9 @@ public sealed abstract class Relogio permits Americano, Brasileiro {
     }
 
     public void setSegundos(int segundos) {
-        if (segundos > 59) {
+        if (acimaTempoPermitido(segundos)) {
             throw new IllegalArgumentException("Os segundos não podem ser maiores que 60!");
-        } else if (segundos < 0) {
+        } else if (isNegativo(segundos)) {
             throw new IllegalArgumentException("Os segundos não podem ser negativos!");
         } else {
             this.segundos = segundos;
